@@ -19,10 +19,12 @@ spec:
     spec:
       containers:
       - name: frontweb
-        image: ilkiformation/apache:v1
+        image: rg.fr-par.scw.cloud/ilkilabs/apache:v1
         ports:
           - containerPort: 80
         volumeMounts:
+          - name: config
+            mountPath: /var/www/simpleweb/config
           - name: vhost
             mountPath: /etc/apache2/sites-available/
           - name: html
@@ -44,4 +46,7 @@ spec:
         - name: templates
           configMap:
             name: frontweb-templates
+        - name: config
+          configMap:
+            name: frontweb-config
 
